@@ -2,15 +2,21 @@ import React from 'react';
 import LanguageContext from '../contexts/LanguageContext';
 
 class Button extends React.Component {
-    // Define contextType using the context object; Name needs to be contextType
-    static contextType = LanguageContext;
+    renderSubmit(value){
+        return value === 'english' ? 'Submit' : 'Voorleggen'; 
+    }
 
     render(){
-        console.log(this.context)
-
-        const text = this.context === 'english' ? 'Submit' : 'Voorleggen';
-
-        return <button className="ui button primary">{text}</button>;
+        return (
+            <button className="ui button primary">
+                {/* Consumer component to get data out of context object 
+                    Pass a child (argument) into the cosumer; The function will be called by the consumer
+                    with the value that is inside the pipe; value is the current value inside the pipe */}
+                <LanguageContext.Consumer>
+                    {value => this.renderSubmit(value)}
+                </LanguageContext.Consumer>
+            </button>
+        );
     }
 }
 
