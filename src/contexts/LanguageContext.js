@@ -1,6 +1,5 @@
 // Contains all business logic and data and make it available to all other components
 import React from 'react';
-import LanguageSelector from '../components/LanguageSelector';
 
 // Capital C required
 const Context = React.createContext('english');
@@ -9,7 +8,7 @@ export class LanguageStore extends React.Component {
     state = { language: 'english' };
 
     // Give nested components the ability to change language
-    onLanguageChange = (language) => {
+    onLanguageChange = language => {
         this.setState({ language });
     };
 
